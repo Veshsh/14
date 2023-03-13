@@ -1,0 +1,47 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_14Budget_accounting"
+        xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" x:Class="_14Budget_accounting.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DatePicker x:Name="Picin" SelectedDateChanged="DataPic" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="Grid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding}" CellEditEnding="Grid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date"  Binding="{Binding Date,UpdateSourceTrigger=PropertyChanged,StringFormat=\{0:dd.MM.yy\}}"/>
+                <DataGridTextColumn Header="Name"  Binding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Mony"  Binding="{Binding Mony,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Header="Pluss"  Binding="{Binding Pluss,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridComboBoxColumn x:Name="TypeList" Header="Typ" SelectedItemBinding="{Binding Typ,UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Content="Новый тип записи" Click="Button_Click" />
+            <Button Grid.Row="1" Content="Новая запись" Click="Button_Click_1" />
+            <Button Grid.Row="2" Content="Сохранить изменения" Click="Button_Click_2" />
+            <Button Grid.Row="3" Content="Удалить запись" Click="Button_Click_3" />
+            <TextBlock x:Name="Cost"  Grid.Row="4" Text="Итог: " Background="White"/>
+        </Grid>
+    </Grid>
+</Window>
